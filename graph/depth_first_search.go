@@ -5,6 +5,7 @@ type point struct {
 	neighbors []int
 }
 
+// グラフの連結を確認する
 func connected(graph map[int]*point, init int) bool {
 	initPoint := graph[init]
 	// スタート地点から枝葉を再帰的に走査しvisitedマークを付けていく
