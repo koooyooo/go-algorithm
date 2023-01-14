@@ -7,7 +7,9 @@ type point struct {
 
 func connected(graph map[int]*point, init int) bool {
 	initPoint := graph[init]
+	// スタート地点から枝葉を再帰的に走査しvisitedマークを付けていく
 	visit(graph, initPoint)
+	// 走査後にvisitedマークの無い箇所が無ければグラフは連結されている
 	for _, p := range graph {
 		if p.visited == false {
 			return false
