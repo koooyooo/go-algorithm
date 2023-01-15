@@ -7,6 +7,11 @@ import (
 	"strings"
 )
 
+// 基本戦略：幅優先探索を利用してステップ数を確認する
+// 第一段階で [][]bool 形式のMapを用意する
+// 第二段階で Mapを元に、経路としてのGraphを作成する
+// Graphは map[address]*point で構成する。addressをポインタにすると同じアドレスを知らないと指定できないので罠
+// *point側からもアドレスが辿れるようにpointにもaddress属性を追加（こちらもポインタにする必要はない）
 func main() {
 	input := strings.NewReader(`o - o o o o
 o - o o - o
@@ -67,6 +72,7 @@ func createGraph(m [][]bool) map[address]*point {
 			}
 		}
 	}
+	// 指定座標がMap内に存在するか
 	var inMap = func(row, col int) bool {
 		if row < minRow || maxRow < row {
 			return false
@@ -76,6 +82,7 @@ func createGraph(m [][]bool) map[address]*point {
 		}
 		return true
 	}
+	// 通過可能なpointか（内部的にinMapも活用）
 	var addNeighborIfOK = func(basePoint *point, row, col int) {
 		if inMap(row, col) {
 			point := graph[address{row, col}]
@@ -84,6 +91,7 @@ func createGraph(m [][]bool) map[address]*point {
 			}
 		}
 	}
+	// 前後左右のpointが追加対象なら追加
 	for a, p := range graph {
 		addNeighborIfOK(p, a.row-1, a.col)
 		addNeighborIfOK(p, a.row+1, a.col)
