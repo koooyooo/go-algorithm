@@ -20,7 +20,6 @@ func checkAllVisitedDFS(graph map[int]*point) bool {
 	return true
 }
 
-// mapはコピーではなく参照となるか
 func visit(g map[int]*point, start int) {
 	point := g[start]
 	point.visit = true
