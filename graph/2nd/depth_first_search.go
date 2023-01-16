@@ -1,22 +1,23 @@
 package main
 
 import (
-	"fmt"
-	"strings"
+	"io"
 )
 
-func main() {
-	r := strings.NewReader(input)
+func checkAllVisitedFromReaderDFS(r io.Reader) bool {
 	lines := read(r)
 	graph := toGraph(lines[1:])
+	return checkAllVisitedDFS(graph)
+}
+
+func checkAllVisitedDFS(graph map[int]*point) bool {
 	visit(graph, 1)
 	for _, p := range graph {
 		if !p.visit {
-			fmt.Println("Not All Visited")
-			return
+			return false
 		}
 	}
-	fmt.Println("All Visited")
+	return true
 }
 
 // mapはコピーではなく参照となるか

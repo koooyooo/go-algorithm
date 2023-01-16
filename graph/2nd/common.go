@@ -12,24 +12,6 @@ type point struct {
 	neighbors []int
 }
 
-// [1]--[2]--[5]
-//
-//	|    |    |
-//
-// [3]--[4]--[6]
-//
-// [Input]
-// M:頂点数 N:辺数
-// 頂点A 頂点B
-var input = `6 7
-1 2
-2 5
-1 3
-2 4
-5 6
-3 4
-4 6`
-
 func toGraph(lines []string) map[int]*point {
 	graph := make(map[int]*point)
 	for _, l := range lines {
