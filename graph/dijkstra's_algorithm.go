@@ -39,7 +39,7 @@ func FillDistance(g Graph, s int) map[int]int {
 		dist[v] = init
 	}
 
-	// 最短ルート候補キューを初期化
+	// 検索候補キューを初期化
 	queue := []*RouteV{{s, 0}}
 	for len(queue) != 0 {
 		route := queue[0]
@@ -51,13 +51,15 @@ func FillDistance(g Graph, s int) map[int]int {
 		}
 
 		for _, e := range g[route.V] {
-			// 最短距離を更新した頂点に関しては最短ルート候補キューに入れる
+			// 最短距離を更新した頂点に関しては
+			// - 距離を更新し
+			// - 検索候補キューに入れる
 			if updated, min := chmin(dist[e.To], dist[route.V]+e.Weight); updated {
+				dist[e.To] = min
 				queue = append(queue, &RouteV{
 					V:        e.To,
 					Distance: min,
 				})
-				dist[e.To] = min
 			}
 		}
 	}
