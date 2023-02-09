@@ -5,21 +5,21 @@ import (
 	"math"
 )
 
-type E struct {
+type Edge struct {
 	To     int
 	Weight int
 }
 
-func (e *E) String() string {
+func (e *Edge) String() string {
 	return fmt.Sprintf("--(%d)-->%d", e.Weight, e.To)
 }
 
-type QE struct {
+type RouteV struct {
 	V        int
 	Distance int
 }
 
-type Graph map[int][]*E
+type Graph map[int][]*Edge
 
 func chmin(a int, b int) (bool, int) {
 	if a > b {
@@ -39,21 +39,21 @@ func FillDistance(g Graph, s int) map[int]int {
 		dist[v] = init
 	}
 
-	// 最短経路を初期化
-	queue := []*QE{{s, 0}}
+	// 最短ルート候補キューを初期化
+	queue := []*RouteV{{s, 0}}
 	for len(queue) != 0 {
 		route := queue[0]
 		queue = queue[1:]
 
-		// 次の頂点の重みを辺の重みだけで上回った場合はゴミルート
+		// 次の頂点の重みを辺の重み単体で上回った場合はゴミルート
 		if dist[route.V] < route.Distance {
 			continue
 		}
 
 		for _, e := range g[route.V] {
-			// 最短経路を更新した頂点に関しては作業キューに入れる
+			// 最短距離を更新した頂点に関しては最短ルート候補キューに入れる
 			if updated, min := chmin(dist[e.To], dist[route.V]+e.Weight); updated {
-				queue = append(queue, &QE{
+				queue = append(queue, &RouteV{
 					V:        e.To,
 					Distance: min,
 				})
