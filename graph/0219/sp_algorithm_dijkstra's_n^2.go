@@ -3,14 +3,14 @@ package _219
 import "math"
 
 func dijkstrasN2(g map[int][]*edge, N, s int) (map[int]int, error) {
+	// 最短頂点利用済みフラグ
+	seen := make(map[int]bool)
 	// 距離の初期化
 	dist := make(map[int]int)
-	seen := make(map[int]bool)
-
 	for i := 0; i < N; i++ {
 		dist[i] = math.MaxInt32
 	}
-	dist[0] = 0
+	dist[s] = 0
 
 	for iter := 0; iter < N; iter++ {
 		minDistance := math.MaxInt32
