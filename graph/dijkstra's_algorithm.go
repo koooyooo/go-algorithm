@@ -21,11 +21,11 @@ type RouteV struct {
 
 type Graph map[int][]*Edge
 
-func chmin(a int, b int) (bool, int) {
+func chmin(a int, b int) (int, bool) {
 	if a > b {
-		return true, b
+		return b, true
 	}
-	return false, a
+	return a, false
 }
 
 func FillDistance(g Graph, s int) map[int]int {
@@ -54,7 +54,7 @@ func FillDistance(g Graph, s int) map[int]int {
 			// 最短距離を更新した頂点に関しては
 			// - 距離を更新し
 			// - 検索候補キューに入れる
-			if updated, min := chmin(dist[e.To], dist[route.V]+e.Weight); updated {
+			if min, updated := chmin(dist[e.To], dist[route.V]+e.Weight); updated {
 				dist[e.To] = min
 				queue = append(queue, &RouteV{
 					V:        e.To,
