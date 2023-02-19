@@ -24,8 +24,8 @@ func TestDo(t *testing.T) {
 			alg:  bellmanford,
 		},
 		{
-			name: "dijkstrasN2",
-			alg:  dijkstrasN2,
+			name: "dijkstrasLoop",
+			alg:  dijkstrasLoop,
 		},
 	}
 

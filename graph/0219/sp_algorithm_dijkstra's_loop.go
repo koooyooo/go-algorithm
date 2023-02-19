@@ -2,7 +2,7 @@ package _219
 
 import "math"
 
-func dijkstrasN2(g map[int][]*edge, N, s int) (map[int]int, error) {
+func dijkstrasLoop(g map[int][]*edge, N, s int) (map[int]int, error) {
 	// 最短頂点利用済みフラグ
 	seen := make(map[int]bool)
 	// 距離の初期化
