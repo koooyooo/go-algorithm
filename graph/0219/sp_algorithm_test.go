@@ -27,6 +27,10 @@ func TestDo(t *testing.T) {
 			name: "dijkstrasLoop",
 			alg:  dijkstrasLoop,
 		},
+		{
+			name: "dijkstrasQueue",
+			alg:  dijkstrasQueue,
+		},
 	}
 
 	for _, test := range tests {
