@@ -4,6 +4,7 @@ import "math"
 
 // dijkstrasLoop はダイクストラ法による距離測定
 func dijkstrasLoop(g map[int][]*edge, N, s int) (map[int]int, error) {
+
 	// ① 距離の初期化
 	dist := make(map[int]int)
 	for i := 0; i < N; i++ {
