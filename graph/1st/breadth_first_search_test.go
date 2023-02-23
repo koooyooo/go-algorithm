@@ -1,4 +1,4 @@
-package graph
+package _st
 
 import (
 	"github.com/stretchr/testify/assert"

@@ -1,4 +1,4 @@
-package _219
+package graph
 
 // shortestPathProblem は最短経路探索のアルゴリズム
 type shortestPathProblem func(g map[int][]*edge, N int, s int) (map[int]int, error)

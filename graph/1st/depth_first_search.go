@@ -1,4 +1,4 @@
-package graph
+package _st
 
 type point struct {
 	visited   bool

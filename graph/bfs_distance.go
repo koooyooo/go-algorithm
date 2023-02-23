@@ -1,4 +1,4 @@
-package _219
+package graph
 
 // [幅優先探索]
 // スタート地点からの距離を測定

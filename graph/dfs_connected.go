@@ -1,4 +1,4 @@
-package _219
+package graph
 
 // グラフの連結を確認する
 func connected(g map[int][]int, s int) bool {
